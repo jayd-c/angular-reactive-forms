@@ -25,9 +25,9 @@ export class AppComponent implements OnInit{
         email: new FormControl(null),
         username: new FormControl(null),
         dob: new FormControl(null),
-        gender: new FormControl(null),
+        gender: new FormControl('male'),
         street: new FormControl(null),
-        country: new FormControl(null),
+        country: new FormControl('India'),
         city: new FormControl(null),
         region: new FormControl(null),
         postal : new FormControl(null)
@@ -35,5 +35,8 @@ export class AppComponent implements OnInit{
       })
   }
 
+  onFormSubmitted() {
+    console.log(this.reactiveForm);
+  }
 
 }
