@@ -78,23 +78,31 @@
     </div>
 
     <!--HTML for Skills Form Array -->
-    <!-- <div class="input-box skills" formArrayName="skills">
-      <h4>Add Skills</h4>
+   
+    
+    <br>
+    <div class="input-box" formArrayName="skills">
+    <h4>Add Skills</h4>
+    @for(control of reactiveForm.get('skills')['controls']; track control.id; let index = $index){
       <div class="column">
-        <input type="text" placeholder="Add Skill...">
-        <button type="button" class="btn-add-delete">Delete</button>
-      </div> 
+        <input type="text" name="" id="" placeholder="Add skills" [formControlName]="index">
+        <button class="btn-add-delete" type="button"  (click)="deleteSkill(index)">Delete</button>
+      </div>
+      
+    }
+    <button type="button" class="btn-add-delete" (click)="addSkills()">Add skills</button>
     </div>
-    <button type="button" class="btn-add-delete">Add Skills</button> -->
+    @for(exp of reactiveForm.get('experience')['controls']; track exp.id; let index = $index) {
 
-    <!--HTML for Experience Form Array -->
-    <!-- <div class="input-box">
-      <div class="experience">
-        <label>Experience</label>
-        <input type="text" placeholder="Company Name" />
+    <div class="input-box" formArrayName="experience">
+        <div class="experience" [formGroupName]="index">
+<!--HTML for Experience Form Array -->
+   
+        <label>Experience {{index+1}}</label>
+        <input type="text" placeholder="Company Name" formControlName="company"/>
         <div class="column">
           <div class="select-box">
-            <select>
+            <select formControlName="position">
               <option hidden>Position</option>
               <option>Junior Developer</option>
               <option>Software Developer</option>
@@ -102,23 +110,22 @@
               <option>Team Lead</option>
             </select>
           </div>
-          <input type="number" placeholder="Experience" />
+          <input type="number" placeholder="Experience" formControlName="totalExp" />
         </div>
         <div class="column">
-          <input type="date" placeholder="Start Date" />
-          <input type="date" placeholder="End Date" />
+          <input type="date" placeholder="Start Date" formControlName="start"/>
+          <input type="date" placeholder="End Date" formControlName="end"/>
         </div>
-        <button type="button" class="btn-add-delete">Delete Experience</button>
+        <button style="margin-right: 5px;" type="button" class="btn-add-delete" (click)="deleteExperience(index)">Delete Experience</button>
       </div>
-    </div>
-    <button type="button" class="btn-add-delete">Add Experience</button> -->
+   
+        </div>
+      } @empty {
+        <h4>Add experience (optional) </h4>
+      }
+        
+    <button type="button" class="btn-add-delete" (click)="addExperience()">Add Experience</button>
 
-    <div class="input-box" formArrayName="skills">
-    @for(control of reactiveForm.get('skills')['controls']; track control.id; let index = $index){
-      <input type="text" name="" id="" placeholder="Add skills" [formControlName]="index">
-    }
-    <button type="button" class="btn-add-delete" (click)="addSkills()">Add skills</button>
-    </div>
       <input type="submit" value="Submit" class="submit-btn" [disabled]="!reactiveForm.valid"> 
   </form>
 </section>

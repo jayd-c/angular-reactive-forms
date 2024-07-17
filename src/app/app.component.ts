@@ -36,8 +36,9 @@ export class AppComponent implements OnInit{
 
         skills: new FormArray([
           new FormControl(null, Validators.required),
-        
-
+        ]),
+        experience: new FormArray([
+          
         ])
        
         
@@ -51,5 +52,27 @@ export class AppComponent implements OnInit{
   addSkills() {
     (<FormArray>this.reactiveForm.get('skills')).push(new FormControl(null, Validators.required))
   }
+  deleteSkill(i:number) {
+  //  const controls = (<FormArray>this.reactiveForm.get('skills'))
+  //  controls.removeAt(i)
 
+  (<FormArray>this.reactiveForm.get('skills')).removeAt(i);
+  }
+
+  addExperience(){
+    const frmGroup = new FormGroup({
+      compoany: new FormControl(null),
+      position: new FormControl(null),
+      totalExp: new FormControl(null),
+      start   : new FormControl(null),
+      end     : new FormControl(null)
+    });
+    (<FormArray>this.reactiveForm.get('experience')).push(frmGroup);
+
+  }
+
+  deleteExperience(index:number){
+    const frmGroupArr = (<FormArray>this.reactiveForm.get('experience'));
+    frmGroupArr.removeAt(index);
+  }
 }
