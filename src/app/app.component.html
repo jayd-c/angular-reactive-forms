@@ -35,9 +35,14 @@
       <div class="input-box">
         <input type="date" placeholder="Date of Birth" formControlName="dob"/>
       </div>
+
     </div>
 
-    
+    <small *ngIf="reactiveForm.get('username').pending">*Waiting for username double check</small>
+    <div *ngIf="reactiveForm.get('username').invalid && reactiveForm.get('username').dirty" class="alert">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      The username {{reactiveForm.get('username').value}} has already taken
+    </div>
 
     <div class="gender-box">
       <h3>Gender</h3>

@@ -5,6 +5,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { CustomValidators } from './validators/noSpaceAllowed.validators';
+import { CustomAsyncValidator } from './validators/AsyncCustom.validators';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit{
         firstname: new FormControl(null,[Validators.required, CustomValidators.noSpaceAllowed]),
         lastname: new FormControl(null, [Validators.required, CustomValidators.noSpaceAllowed]),
         email: new FormControl(null,[Validators.required, Validators.email]),
-        username: new FormControl(null),
+        username: new FormControl(null, Validators.required, CustomAsyncValidator.checkUsername),
         dob: new FormControl(null),
         gender: new FormControl('male'),
         address: new FormGroup({
