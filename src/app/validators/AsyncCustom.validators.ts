@@ -13,8 +13,10 @@ export class CustomAsyncValidator {
           setTimeout(()=> {
             if(takenUsernames.includes(username)) {
                 resolve({checkUsername: true})
+            } else if(username.length <= 3 && username.length != 0){
+               resolve ({checkUsername:true})
             } else {
-                resolve(null);
+                 resolve(null);
             }
           },5000)  
         });

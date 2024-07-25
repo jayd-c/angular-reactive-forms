@@ -15,6 +15,7 @@
   .container .form {
     margin-top: 20px;
   }
+
   .form .input-box {
     width: 100%;
     margin-top: 5px;
@@ -199,7 +200,7 @@
     border: red 3px solid;
   }
   .container.PENDING{
-    border: orange 3px solid;
+    border: yellow 3px solid;
   }
 
   /* The alert message box */
